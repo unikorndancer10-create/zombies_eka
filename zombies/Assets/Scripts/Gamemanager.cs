@@ -1,13 +1,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class Gamemanager : MonoBehaviour
 {
     public GameObject[] zombies;
 
     public GameObject selectedZombie;
+
     public Vector3 selectedSize;
     public Vector3 pushForce;
+
+    public TMP_Text timerText;
+    private float timer;
+
     private InputAction next, prev, jump;
     private int selectedIndex = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -61,5 +67,8 @@ public class Gamemanager : MonoBehaviour
             if(rb != null)
                 rb.AddForce(pushForce);
         }
+
+        timer += Time.deltaTime;
+        timerText.text = "Time: " + timer.ToString("F1") + "s";
     }
 }
